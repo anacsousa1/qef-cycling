@@ -1,3 +1,9 @@
+"""
+Created on Fri May 29 17:19:38 2020
+
+@author: Ana de Sousa (anacsousa@lara.unb.br)
+"""
+
 # IMPORT OPENSIM LIBRARIES
 import opensim as osim
 
