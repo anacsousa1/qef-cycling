@@ -11,19 +11,32 @@ import opensim as osim
 import pathlib  # get current path
 import os.path  # create path
 import numpy    # math
+import myFunctions as osim2 # wrap functions
 
 # DEFINE KEY MODEL VARIABLES 
 # ********** Paths and files ********** 
 currentPath = pathlib.Path().absolute()
 modelName = os.path.join(currentPath, "cycling_model.osim")
-markerSetFile = "cycling_model_MarkerSet.xml"    
+markerSetFile = "cycling_model_MarkerSet.xml"
+modelMarkersFile = "cycling_model_markers.osim"
 # newModel = os.path.join(currentPath, "cycling_model.osim")
 
+# ********** Open model, set new name ********** 
+myModel = osim.Model(modelName) 
+myModel.setName("cycling_model_markers")     
+
+# ********** Get references to objects ********** 
+ground = myModel.getGround()
+calcn_r = osim2.find_body(myModel,"calcn_r")
+
 ## BUILDING A MARKERSET OBJECT FROM FILE AND ATTACHING IT TO A MODEL
-# TODO model.osim
-myModel = osim.Model(modelName)             
-# newMarkers = osim.MarkerSet(myModel, markerSetFile)
-# myModel.updateMarkerSet(newMarkers)
+# Create the markers set file and attach to model       
+newMarkers = osim.MarkerSet()
+myModel.updateMarkerSet(newMarkers)
+
+# Create markers
+calcn_r_marker = osim.Marker("FOOT_r",calcn_r, osim.Vec3(0,0,0))
+myModel.addMarker(calcn_r_marker)
 
 ## SETTING FILES
 # TODO ScaleMarkerSet.xml
@@ -44,5 +57,8 @@ myModel = osim.Model(modelName)
 # TODO file.trc
 
 ## OUTPUT
+myModel.finalizeConnections()
+newMarkers.printToXML(markerSetFile)
+myModel.printToXML(modelMarkersFile)
 # TODO subject01_simbody.osim
 

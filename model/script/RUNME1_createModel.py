@@ -11,6 +11,7 @@ import opensim as osim
 import pathlib  # get current path
 import os.path  # create path
 import numpy    # math
+import myFunctions as osim2 # wrap functions
 
 # DEFINE KEY MODEL VARIABLES 
 # ********** Body ********** 
@@ -54,18 +55,7 @@ currentPath = pathlib.Path().absolute()
 modelName = os.path.join(currentPath, "gait10dof18musc_edit.osim")
 newModel = os.path.join(currentPath, "cycling_model.osim")
 
-# DEFINE FUNCTIONS
-def find_body(model,name_body):     # finds bodies
-    for body in model.getBodyList():    
-        if body.getName() == name_body:
-            this_body = body
-    return this_body
 
-def find_joint(model,name_joint): # find joints
-    for joint in model.getJointList():
-        if joint.getName() == name_joint:
-            this_joint = joint
-    return this_joint
 
 ## INSTANTIATE AN OPENSIM MODEL
 myModel = osim.Model(modelName)
@@ -73,8 +63,8 @@ myModel.setName("cycling_model")
 
 ## GET REFERENCES TO OBJECTS
 ground = myModel.getGround()
-calcn_r = find_body(myModel,"calcn_r")
-calcn_l = find_body(myModel,"calcn_l")
+calcn_r = osim2.find_body(myModel,"calcn_r")
+calcn_l = osim2.find_body(myModel,"calcn_l")
 
 ## CONSTRUCT BODIES AND JOINTS HERE
 # ********** Crank ********** 
@@ -108,8 +98,8 @@ myModel.addJoint(cleat_r)
 myModel.addJoint(cleat_l)
 
 # ********** Pedals ********** 
-cleat_r_body = find_body(myModel,"cleat_r")
-cleat_l_body = find_body(myModel,"cleat_l")
+cleat_r_body = osim2.find_body(myModel,"cleat_r")
+cleat_l_body = osim2.find_body(myModel,"cleat_l")
 pedal_r = osim.Body("pedal_r",pedal_mass,vector_zero,pedal_inertia)
 pedal_l = osim.Body("pedal_l",pedal_mass,vector_zero,pedal_inertia)
 
