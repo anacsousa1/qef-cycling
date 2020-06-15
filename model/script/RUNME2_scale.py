@@ -25,9 +25,12 @@ modelMarkersFile = "cycling_model_markers.osim"
 myModel = osim.Model(modelName) 
 myModel.setName("cycling_model_markers")     
 
-# ********** Get references to objects ********** 
+# ********** Get references ********** 
 ground = myModel.getGround()
 calcn_r = osim2.find_body(myModel,"calcn_r")
+calcn_l = osim2.find_body(myModel,"calcn_l")
+pedal_r = osim2.find_body(myModel,"pedal_r")
+pedal_l = osim2.find_body(myModel,"pedal_l")
 
 ## BUILDING A MARKERSET OBJECT FROM FILE AND ATTACHING IT TO A MODEL
 # Create the markers set file and attach to model       
@@ -35,8 +38,17 @@ newMarkers = osim.MarkerSet()
 myModel.updateMarkerSet(newMarkers)
 
 # Create markers
-calcn_r_marker = osim.Marker("FOOT_r",calcn_r, osim.Vec3(0,0,0))
+calcn_r_marker = osim.Marker("ANKLE_r",calcn_r, osim.Vec3(0.06,0.05,0.035))
 myModel.addMarker(calcn_r_marker)
+
+calcn_l_marker = osim.Marker("ANKLE_l",calcn_l, osim.Vec3(0.06,0.05,-0.035))
+myModel.addMarker(calcn_l_marker)
+
+pedal_r_marker = osim.Marker("PEDAL_r",pedal_r, osim.Vec3(0,0,0.05))
+myModel.addMarker(pedal_r_marker)
+
+pedal_l_marker = osim.Marker("PEDAL_l",pedal_l, osim.Vec3(0,0,-0.05))
+myModel.addMarker(pedal_l_marker)
 
 ## SETTING FILES
 # TODO ScaleMarkerSet.xml

@@ -3616,11 +3616,29 @@
 		<!--Markers in the model.-->
 		<MarkerSet name="markerset">
 			<objects>
-				<Marker name="FOOT_r">
+				<Marker name="ANKLE_r">
 					<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame to which this station is fixed.).-->
 					<socket_parent_frame>/bodyset/calcn_r</socket_parent_frame>
 					<!--The fixed location of the station expressed in its parent frame.-->
-					<location>0 0 0</location>
+					<location>0.059999999999999998 0.050000000000000003 0.035000000000000003</location>
+				</Marker>
+				<Marker name="ANKLE_l">
+					<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame to which this station is fixed.).-->
+					<socket_parent_frame>/bodyset/calcn_l</socket_parent_frame>
+					<!--The fixed location of the station expressed in its parent frame.-->
+					<location>0.059999999999999998 0.050000000000000003 -0.035000000000000003</location>
+				</Marker>
+				<Marker name="PEDAL_r">
+					<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame to which this station is fixed.).-->
+					<socket_parent_frame>/bodyset/pedal_r</socket_parent_frame>
+					<!--The fixed location of the station expressed in its parent frame.-->
+					<location>0 0 0.050000000000000003</location>
+				</Marker>
+				<Marker name="PEDAL_l">
+					<!--Path to a Component that satisfies the Socket 'parent_frame' of type PhysicalFrame (description: The frame to which this station is fixed.).-->
+					<socket_parent_frame>/bodyset/pedal_l</socket_parent_frame>
+					<!--The fixed location of the station expressed in its parent frame.-->
+					<location>0 0 -0.050000000000000003</location>
 				</Marker>
 			</objects>
 			<groups />
